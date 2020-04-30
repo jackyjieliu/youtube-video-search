@@ -1,0 +1,15 @@
+.video-search-result {
+  max-width: 320px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.video-search-result .video-image {
+  width: 100%;
+}
+
+.video-search-result .video-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

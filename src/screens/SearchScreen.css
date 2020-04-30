@@ -1,0 +1,29 @@
+.search-screen .search-input {
+  padding: 3px 35px 3px 5px;
+  height: 32px;
+  font-size: 24px;
+  border-radius: 0;
+  width: 90%;
+  max-width: 400px;
+  background: inherit;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+
+}
+
+.search-screen .icon-container {
+  position: relative;
+  left: -32px;
+  width: 0;
+}
+
+.search-screen .search-results {
+  padding: 0 20px;
+  margin-top: 74px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

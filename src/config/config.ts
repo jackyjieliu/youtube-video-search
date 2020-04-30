@@ -1,0 +1,3 @@
+export const CONFIG = {
+  YOUTUBE_API_KEY: 'AIzaSyCX6NjWqI6vPMRmD2OTWz1ldh2Y9JmFFdo'
+}
