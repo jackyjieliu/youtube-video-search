@@ -1,0 +1,47 @@
+.paginator .items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 1000px) {
+  .paginator .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.paginator .pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  flex-wrap: wrap;
+}
+
+.paginator .pagination .page-number {
+  width: 40px;
+  border-radius: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.paginator .pagination .cliclable-page-number {
+  cursor: pointer;
+}
+
+.paginator .pagination .current-page,
+.paginator .pagination .cliclable-page-number:hover {
+  background-color: #FF5956;
+  color: #fff;
+}
+
+.paginator .pagination .cliclable-page-number:hover {
+  opacity: 0.7;
+}

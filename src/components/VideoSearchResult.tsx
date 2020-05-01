@@ -1,16 +1,14 @@
 import * as React from 'react';
 import './VideoSearchResult.css';
 import { YoutubeResult } from '../store/search/searchEffects';
-// import svgPlaceholder from '../placeholder.svg';
 
-const SvgPlaceholder = function() {
-  return <svg height="180px"  width="320px" xmlns="http://www.w3.org/2000/svg"></svg>;
+const ImagePlaceholder = function() {
+  return <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"></svg>
 }
 
 interface Props {
-  result: YoutubeResult
+  item: YoutubeResult
 }
-
 
 export default class VideoSearchResult extends React.Component<Props> {
   constructor(props: Props) {
@@ -22,18 +20,17 @@ export default class VideoSearchResult extends React.Component<Props> {
   }
 
   render() {
-    const youtubeLink = 'https://www.youtube.com/watch?v=' + this.props.result.id.videoId;
-    const title = this.props.result.snippet.title;
-    const vidoeImage = this.props.result.snippet.thumbnails.medium.url;
-    // let placeholderImage;
+    const youtubeLink = 'https://www.youtube.com/watch?v=' + this.props.item.videoId;
+    const title = this.props.item.title;
+    const vidoeImage = this.props.item.thumbnails.medium.url;
 
     return (
 
       <div className='video-search-result'>
-        <a href={youtubeLink} target='_blank'>
-          <div style={{ position: 'relative' }}>
-            <img className='video-image' style={{ position: 'absolute' }}src={vidoeImage}></img>
-            <div className='video-image' ><SvgPlaceholder/></div>
+        <a className='youtube-link' href={youtubeLink} target='_blank'>
+          <div className='image-container'>
+            <img className='video-image' src={vidoeImage}></img>
+            <div className='video-image-placeholder' ><ImagePlaceholder/></div>
           </div>
           <div className='video-title' dangerouslySetInnerHTML={{ __html: title }}></div>
         </a>

@@ -21,9 +21,13 @@
 }
 
 .search-screen .search-results {
-  padding: 0 20px;
+  padding: 0 20px 20px 20px;
   margin-top: 74px;
+}
+
+.search-screen .search-screen-info {
+  padding: 150px 0;
+  align-items: center;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }

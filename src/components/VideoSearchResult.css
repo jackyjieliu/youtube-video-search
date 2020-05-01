@@ -1,11 +1,33 @@
 .video-search-result {
   max-width: 320px;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  place-self: center;
+}
+
+@media (max-width: 700px) {
+  .video-search-result {
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 500px) {
+  .video-search-result {
+    max-width: 160px;
+  }
+}
+
+.video-search-result .image-container {
+  position: relative;
+}
+
+.video-search-result .video-image-placeholder,
+.video-search-result .video-image {
+  width: 100%;
 }
 
 .video-search-result .video-image {
-  width: 100%;
+  position: absolute;
 }
 
 .video-search-result .video-title {

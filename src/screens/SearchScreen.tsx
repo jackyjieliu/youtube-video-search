@@ -8,6 +8,7 @@ import Paginator from '../components/Paginator';
 import VideoSearchResult from '../components/VideoSearchResult';
 import { YoutubeResult } from '../store/search/searchEffects';
 import { State } from '../store/store';
+import Spinner from '../components/Spinner';
 
 interface StateProps {
   searchTerm: string;
@@ -25,7 +26,7 @@ interface OwnState {
   searchTerm: string
 }
 
-class SearchScreen extends React.Component<Props, OwnState> {
+export class SearchScreen extends React.Component<Props, OwnState> {
   constructor(props: Props) {
     super(props);
 
@@ -40,7 +41,7 @@ class SearchScreen extends React.Component<Props, OwnState> {
     })
   }
 
-  handlekeyPressed = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  handleKeyPressed = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       this.searchVideos()
     }
@@ -50,27 +51,27 @@ class SearchScreen extends React.Component<Props, OwnState> {
     this.props.searchVideos(this.state.searchTerm);
   }
 
-  render() {
-    console.log(JSON.stringify(this.props.results));
-
-
+  getContent() {
     let content;
-
     if (this.props.isLoading) {
-      content = <div>Loading...</div>
+      content = <div className='search-screen-info'><Spinner></Spinner></div>
     } else if (this.props.isError) {
-      content = <div>Error</div>
+      content = <div className='search-screen-info'>An error occurred. Please try again later.</div>
     } else if (this.props.searchTerm) {
       if (this.props.results.length === 0) {
-        content = <div>No results</div>
+        content = <div className='search-screen-info'>No results</div>
       } else {
-        content = this.props.results.map((r) => {
-          return <VideoSearchResult result={r} key={r.id.videoId}></VideoSearchResult>
-        });
+        content = <Paginator items={this.props.results} itemsPerPage={10} component={VideoSearchResult}></Paginator>
       }
+    } else {
+      content = <div className='search-screen-info'>Start by typing something in the input above!</div>
     }
+    return content;
+  }
 
+  render() {
 
+    const content = this.getContent();
     return (
       <div className='search-screen'>
         <AppBar styles={{ justifyContent: 'center' }}>
@@ -80,11 +81,11 @@ class SearchScreen extends React.Component<Props, OwnState> {
             value={this.state.searchTerm}
             placeholder='收尋...'
             onChange={this.handleSearchTermChanged}
-            onKeyPress={this.handlekeyPressed}
+            onKeyPress={this.handleKeyPressed}
           >
           </input>
           <div className='icon-container'>
-            <IoIosSearch size='32' color='#fff' onClick={this.searchVideos} />
+            <IoIosSearch size='32' color='#fff' className='search-icon' onClick={this.searchVideos} />
           </div>
         </AppBar>
         <div className='search-results'>
@@ -95,7 +96,7 @@ class SearchScreen extends React.Component<Props, OwnState> {
   }
 }
 
-function mapStateToProps(state: State): StateProps {
+export function mapStateToProps(state: State): StateProps {
   const searchState = state.search;
 
   return {
@@ -106,7 +107,7 @@ function mapStateToProps(state: State): StateProps {
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
+export function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
   return {
     searchVideos: (searchTerm: string) => {
       dispatch(searchActions.updateSearchTerm(searchTerm));
