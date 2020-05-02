@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Paginator from './Paginator';
 import { shallow } from 'enzyme';
 
@@ -21,7 +21,7 @@ describe('<Paginator>', () => {
 
   it('should be able to go to a page', () => {
 
-    window.scrollTo = () => {};
+    window.scrollTo = () => { };
 
     const elem = setup();
     const pageNumberElem = elem.find('.cliclable-page-number');

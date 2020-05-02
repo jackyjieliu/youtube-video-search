@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import VideoSearchResult from './VideoSearchResult';
 import { shallow } from 'enzyme';
 

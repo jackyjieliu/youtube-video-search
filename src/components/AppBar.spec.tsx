@@ -1,12 +1,11 @@
 import React from 'react';
-import sinon from 'sinon';
 import AppBar from './AppBar';
 import { shallow } from 'enzyme';
 
 describe('<AppBar>', () => {
   it('should render app bar', () => {
 
-    const elem = shallow(<AppBar/>);
+    const elem = shallow(<AppBar />);
     expect(elem.find('.app-bar').length).toEqual(1);
   });
 

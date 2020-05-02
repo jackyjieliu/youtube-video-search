@@ -20,11 +20,13 @@ const INITIAL_STATE: State = {
 
 export default function reducer(state: State = INITIAL_STATE, action: Actions) {
   switch (action.type) {
+
     case TYPES.UPDATE_SEARCH_TERM:
       return {
         ...state,
         searchTerm: action.payload,
       };
+
     case TYPES.UPDATE_SEARCH_RESULTS:
       return {
         ...state,
@@ -34,18 +36,20 @@ export default function reducer(state: State = INITIAL_STATE, action: Actions) {
         },
         isLoading: false,
       };
+
     case TYPES.REQUEST_VIDEOS:
       return {
         ...state,
         isError: false,
         isLoading: true,
-      }
+      };
+
     case TYPES.REQUEST_VIDEOS_ERROR:
       return {
         ...state,
         isError: true,
         isLoading: false,
-      }
+      };
     default:
   }
   return state;

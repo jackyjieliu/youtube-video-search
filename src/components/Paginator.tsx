@@ -12,7 +12,10 @@ interface OwnState {
   currentPage: number;
 }
 
-export default class Paginator<T extends { id: number | string}> extends React.Component<Props<T>, OwnState> {
+/**
+ * Handles pagination logic of a list
+ */
+export default class Paginator<T extends { id: number | string }> extends React.Component<Props<T>, OwnState> {
 
   constructor(props: Props<T>) {
     super(props);
@@ -22,18 +25,32 @@ export default class Paginator<T extends { id: number | string}> extends React.C
     }
   }
 
-  goToPageWrapper(currentPage: number) {
+  /**
+   * Navigate to a page
+   * @param goToPage page number to go to
+   * @returns {Function} call the returned function to go to the page
+   */
+  goToPageWrapper(goToPage: number) {
     return () => {
-      if (this.state.currentPage !== currentPage) {
+
+      if (this.state.currentPage !== goToPage) {
+
         this.setState({
           ...this.state,
-          currentPage,
+          currentPage: goToPage,
         });
         window.scrollTo(0, 0);
       }
     }
   }
 
+  /**
+   * Get items to display on the page from the full list
+   * @param items list of all items
+   * @param itemsPerPage items to display
+   * @param currentPage current page number
+   * @returns {Array<Element>} List of elements to display
+   */
   getItemsToDisplay(items: Array<T>, itemsPerPage: number, currentPage: number) {
 
     const beginIndex = (currentPage - 1) * itemsPerPage;
@@ -44,6 +61,13 @@ export default class Paginator<T extends { id: number | string}> extends React.C
       });;
   }
 
+  /**
+   * Get elements for pagination section
+   * @param totalItems total number of items
+   * @param itemsPerPage number of items per page
+   * @param currentPage current page number
+   * @returns {Array<Element>} pagination information to display
+   */
   getPaginationElements(totalItems: number, itemsPerPage: number, currentPage: number) {
 
     const pages = Math.ceil(totalItems / itemsPerPage);

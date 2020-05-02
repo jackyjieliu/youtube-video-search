@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { SearchScreen, mapStateToProps, mapDispatchToProps } from './SearchScreen';
 import { shallow } from 'enzyme';
-import Sinon, * as sinon from 'sinon';
+import * as sinon from 'sinon';
 import * as searchActions from '../store/search/searchActions';
 
 describe('<SearchScreen>', () => {
@@ -12,7 +12,7 @@ describe('<SearchScreen>', () => {
       results: [],
       isError: false,
       isLoading: false,
-      searchVideos: () => {}
+      searchVideos: () => { }
     }, customProps)
 
     const elem = shallow<SearchScreen>(<SearchScreen {...props} />);

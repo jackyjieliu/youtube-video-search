@@ -17,7 +17,7 @@ interface StateProps {
   isLoading: boolean;
 }
 
-interface DispatchProps{
+interface DispatchProps {
   searchVideos: (searchTerm: string) => void;
 }
 
@@ -26,6 +26,9 @@ interface OwnState {
   searchTerm: string
 }
 
+/**
+ * Display the screen to search videos
+ */
 export class SearchScreen extends React.Component<Props, OwnState> {
   constructor(props: Props) {
     super(props);
@@ -35,22 +38,34 @@ export class SearchScreen extends React.Component<Props, OwnState> {
     }
   }
 
+  /**
+   * Update state when user updates the search term
+   */
   handleSearchTermChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       searchTerm: event.target.value
     })
   }
 
+  /**
+   * Detect for enter pressed to search video
+   */
   handleKeyPressed = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       this.searchVideos()
     }
   }
 
+  /**
+   * Search video
+   */
   searchVideos = () => {
     this.props.searchVideos(this.state.searchTerm);
   }
 
+  /**
+   * Get content to display. This could be a message a list of video results
+   */
   getContent() {
     let content;
     if (this.props.isLoading) {
@@ -79,7 +94,7 @@ export class SearchScreen extends React.Component<Props, OwnState> {
             type='text'
             className='search-input'
             value={this.state.searchTerm}
-            placeholder='收尋...'
+            placeholder='Search...'
             onChange={this.handleSearchTermChanged}
             onKeyPress={this.handleKeyPressed}
           >
@@ -116,4 +131,4 @@ export function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (SearchScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen);

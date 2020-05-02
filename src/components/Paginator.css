@@ -1,4 +1,6 @@
 .paginator .items {
+
+  /* Use flexbox as a backup for css grid */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;

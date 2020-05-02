@@ -4,13 +4,16 @@ const SEARCH_TERM = 'SEARCH_TERM';
 const API_KEY = 'API_KEY'
 const API_URL = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&type=video&q=' + SEARCH_TERM + '&key=' + API_KEY
 
+/**
+ * Search youtube for videos and format result
+ * @param searchTerm string to search for
+ */
 export async function searchYoutube(searchTerm: string): Promise<Array<YoutubeResult>> {
   const url = API_URL
     .replace(API_KEY, CONFIG.YOUTUBE_API_KEY)
     .replace(SEARCH_TERM, searchTerm);
 
-  // const response = await fetch(url);
-  const response = await fetch(searchTerm);
+  const response = await fetch(url);
   const result = await response.json();
 
   const items: Array<RawYoutubeResult> = result.items;
