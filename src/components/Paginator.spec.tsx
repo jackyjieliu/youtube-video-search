@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Paginator from './Paginator';
 import { shallow } from 'enzyme';
 
-describe.skip('<Paginator>', () => {
+describe('<Paginator>', () => {
 
   function MockItemRenderer(props: { item: { id: string; } }) {
     return <div className='mock-item-renderer'>{props.item.id}</div>

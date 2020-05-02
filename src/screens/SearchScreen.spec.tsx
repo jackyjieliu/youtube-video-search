@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Sinon, * as sinon from 'sinon';
 import * as searchActions from '../store/search/searchActions';
 
-describe.skip('<SearchScreen>', () => {
+describe('<SearchScreen>', () => {
 
   function setup(customProps?: any) {
     const props = Object.assign({
