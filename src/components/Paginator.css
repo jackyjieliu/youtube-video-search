@@ -10,11 +10,13 @@
 
 @media (min-width: 1000px) {
   .paginator .items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1500px) {
+  .paginator .items {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
